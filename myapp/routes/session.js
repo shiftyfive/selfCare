@@ -37,7 +37,7 @@ router.post('/new', (req, res, next) => {
 
       req.session.userId = user.id;
 
-      res.redirect('/listBuilder');
+      res.redirect('/quiz');
     })
     .catch(bcrypt.MISMATCH_ERROR, () => {
       throw loginError;
