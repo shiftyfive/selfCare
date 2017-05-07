@@ -6,6 +6,7 @@ const router = express.Router();
 
 // Checks if session exists, to do auth stuff on website
 router.get('/', (req, res) => {
+  console.log(req.body);
   if (req.session.userId) {
     res.status(200).json(true);
   } else {
@@ -15,13 +16,14 @@ router.get('/', (req, res) => {
 
 // Login and create session
 router.post('/new', (req, res, next) => {
-  const { user_name, password } = req.body;
+  const { email, password } = req.body;
+  console.log(req.body);
   const loginError = new Error('Bad Username or Password');
 
   let user;
 
   knex('users')
-    .where('user_name', user_name)
+    .where('email', email)
     .first()
     .then((row) => {
       if (!row) {
@@ -36,6 +38,7 @@ router.post('/new', (req, res, next) => {
       delete user.hashed_password;
 
       req.session.userId = user.id;
+      console.log(res.locals.user);
 
       res.redirect('/quiz');
     })

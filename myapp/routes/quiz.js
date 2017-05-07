@@ -13,10 +13,10 @@ function authorize(req, res, next) {
   return next();
 }
 
-router.get('/', authorize, (req, res) => {
+router.get('/', (req, res) => {
   const { userId } = req.session;
   const id = userId;
-  res.render('quiz');
+  res.render('index', { title: 'You logged in' });
 });
 
 module.exports = router;

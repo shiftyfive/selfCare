@@ -4,7 +4,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 const express = require('express');
 const path = require('path');
-const bcrypt = require('bcrypt-as-promised');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
@@ -13,6 +12,7 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const index = require('./routes/index');
 const quiz = require('./routes/quiz');
+const session = require('./routes/session');
 
 const app = express();
 
@@ -32,7 +32,9 @@ app.use(cookieSession({
   name: 'selfCare',
   secret: process.env.SESSION_SECRET,
 }));
+
 app.use('/', index);
+app.use('/session', session);
 app.use('/quiz', quiz);
 
 // catch 404 and forward to error handler
