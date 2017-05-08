@@ -13,6 +13,7 @@ const methodOverride = require('method-override');
 const index = require('./routes/index');
 const quiz = require('./routes/quiz');
 const session = require('./routes/session');
+const createAccount = require('./routes/create');
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use(cookieSession({
 app.use('/', index);
 app.use('/session', session);
 app.use('/quiz', quiz);
+app.use('create', createAccount);
 
 // catch 404 and forward to error handler
 app.use(() => {

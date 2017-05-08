@@ -16,7 +16,7 @@ function authorize(req, res, next) {
 router.get('/', (req, res) => {
   const { userId } = req.session;
   const id = userId;
-  res.render('index', { title: 'You logged in' });
+  res.render('quiz', { title: questions });
 });
 
 module.exports = router;
